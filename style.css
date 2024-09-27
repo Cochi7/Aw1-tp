@@ -10,6 +10,15 @@ header{
     align-items: center;
     justify-content: space-between;
     font-weight: bold;
+    font-size: 18px;
+}
+
+.nombre{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-right: 370px;
+    color: #24303c;
 }
 
 nav a{
@@ -27,6 +36,17 @@ nav a{
     color: white;
     border: 5px solid #24303c;
     border-radius: 5%;
+}
+
+.form-register a {
+    color: white;
+    text-decoration: none;
+    margin-left: 28%;
+}
+
+.form-register a:hover {
+    color: white;
+    text-decoration: underline;
 }
 
 .form-register h4 {
@@ -56,6 +76,10 @@ nav a{
     font-size: 16px;
 }
 
+.form-register button:hover {
+    text-decoration: underline;
+}
+
 .title {
     text-align: center;
     color: #24303c;
@@ -70,5 +94,9 @@ nav a{
     color: white;
     margin: 16px 0;
     padding: 12px;
+}
+
+button:hover {
+    text-decoration: underline;
 }
 
