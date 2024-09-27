@@ -25,6 +25,8 @@ nav a{
     border-radius: 4px;
     font-family: 'calibri';
     color: white;
+    border: 5px solid #24303c;
+    border-radius: 5%;
 }
 
 .form-register h4 {
@@ -62,10 +64,11 @@ nav a{
 }
 
 .boton {
-    width: 100px;
+    width: 130px;
     background: #1f53c5;
     border: none;
     color: white;
     margin: 16px 0;
+    padding: 12px;
 }
 
