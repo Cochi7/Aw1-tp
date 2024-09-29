@@ -1,28 +1,6 @@
 body {
     background-image: url('/Imagenes/fondo1.jpg');
-}
-
-header{
-    height: 80px;
-    padding: 10px;
-    background: #327389;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.nombre{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin-right: 370px;
-    color: #24303c;
-}
-
-nav a{
-    padding-right: 10px;
+    padding: 0px 0px 20px 0px;
 }
 
 .form-register {
@@ -44,6 +22,10 @@ nav a{
     margin-left: 28%;
 }
 
+.form-register p {
+    margin-right: 50px;
+}
+
 .form-register a:hover {
     color: white;
     text-decoration: underline;
@@ -60,7 +42,7 @@ nav a{
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 16px;
-    border: 1px solid #1f53c5;
+    border: 1px solid #0063de;
     font-family: 'calibri';
     font-size: 18px;
     color: white;
@@ -68,7 +50,7 @@ nav a{
 
 .form-register .boton {
     width: 100%;
-    background: #1f53c5;
+    background: #0063de;
     border: none;
     padding: 12px;
     color: white;
@@ -89,7 +71,7 @@ nav a{
 
 .boton {
     width: 130px;
-    background: #1f53c5;
+    background: #0063de;
     border: none;
     color: white;
     margin: 16px 0;
@@ -112,8 +94,15 @@ button:hover {
     margin-left: 10%;
     margin-top: 30px;
     border: 5px solid black;
+    border-radius: 5% 5% 0px 0px;
     display: flex;
     flex-direction: column;
+}
+
+.card img{
+    border-radius: 5% 5% 0px 0px;;
+    min-height: 400px;
+    max-height: 400px;
 }
 
 .card .content {
@@ -123,15 +112,28 @@ button:hover {
 }
 
 .card .footer {
-    background-color: #24303c;
+    background-color: #2e34a7;
     padding: 10px;
-    height: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 10%;
 }
 
 .card .precio {
+    width: 120px;
+    height: 35px;
     text-align: center;
-    border: 1px solid #1f53c5;
-    margin-left: 200px;
-    margin-right: 200px;
+    border: 1px solid #0063de;
+    border-radius: 5%;
+    color: white;
+}
+
+.card button {
+    width: 100px;
+    background: #45a050;
+    border: none;
+    color: white;
 }
 
