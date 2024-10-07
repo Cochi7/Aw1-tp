@@ -1,5 +1,4 @@
 const navElements = [
-    {title:"Log in", link: "./login.html"},
     {title:"Electrodomesticos", link: "./electrodomesticos.html"},
     {title:"Celulares", link: "./celulares.html"},
     {title:"Componentes", link: "./componentes.html"},
@@ -26,7 +25,7 @@ const navBar = `
                         }).join('')
                     }
                 </ul>
-                <button class="btn btn-danger ms-auto"><i class="bi bi-box-arrow-in-left"></i></button>
+                <button class="logoutBtn btn btn-danger ms-auto"><i class="bi bi-box-arrow-in-left"></i></button>
             </div>
         </div>
     </nav>
@@ -40,4 +39,13 @@ window.addEventListener('load', () => {
     navContainer.innerHTML = navBar
     title.textContent = `${pageName}`
     document.title = pageName
+
+    const logoutBtn = document.querySelector('.logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+
+            window.location.href = 'login.html';
+        });
+    }
 })
+
