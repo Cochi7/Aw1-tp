@@ -1,0 +1,82 @@
+{
+    "electrodomesticos": [
+      {
+        "nombre": "Smart TV",
+        "descripcion": "Televisor inteligente de alta definición",
+        "precio": 599.99,
+        "imagen_url": "https://www.lg.com/ar/images/televisores/md06198536/gallery/DES_1_N.jpg"
+      },
+      {
+        "nombre": "Lavarropa",
+        "descripcion": "Lavarropas Carga Frontal 6Kg 600 RPM",
+        "precio": 799.99,
+        "imagen_url": "https://static.hendel.com/media/catalog/product/cache/b866fd8d147dcce474dc8744e477ca66/5/0/50126_gr-min.jpg"
+      },
+      {
+        "nombre": "Licuadora",
+        "descripcion": "Licuadora potente con múltiples velocidades",
+        "precio": 149.99,
+        "imagen_url": "https://www.dualequipamientos.com.ar/wp-content/uploads/2022/05/Licuadora-y-Picadora-Embassy-EM-500.jpg"
+      },
+      {
+        "nombre": "Parlante",
+        "descripcion": "Parlante Portátil Bluetooth DJP11",
+        "precio": 89.99,
+        "imagen_url": "https://acdn.mitiendanube.com/stores/001/593/734/products/ng-bt650-frente-a99d782a40b40145b717090542749228-1024-1024.jpg"
+      }
+    ],
+
+    "celulares": [
+      {
+        "nombre": "Iphone 15",
+        "descripcion": "Combina un diseño elegante, cámaras mejoradas y conectividad USB-C",
+        "precio": 899.99,
+        "imagen_url": "https://i.blogs.es/ef28bf/iphone-15-iphone-15-plus-7/650_1200.jpeg"
+      },
+      {
+        "nombre": "Samsung Galaxy s24 ultra",
+        "descripcion": "Presenta un diseño premium, pantalla AMOLED de alta resolución, potente procesador, cámaras avanzadas y soporte para S Pen",
+        "precio": 699.99,
+        "imagen_url": "https://www.cordobadigital.net/wp-content/uploads/2024/01/S24-Ultra-Grey.jpg"
+      },
+      {
+        "nombre": "Motorola g84",
+        "descripcion": "Ofrece un diseño atractivo, pantalla AMOLED, buena duración de batería y cámaras versátiles, todo a un precio accesible",
+        "precio": 349.99,
+        "imagen_url": "https://saturnohogar.vtexassets.com/arquivos/ids/156943/5064.jpg?v=638296552226300000"
+      },
+      {
+        "nombre": "Redmi Note 13",
+        "descripcion": "Destaca por su gran pantalla, potente batería, rendimiento sólido y cámaras versátiles, todo a un precio competitivo",
+        "precio": 249.99,
+        "imagen_url": "https://acdn.mitiendanube.com/stores/001/160/892/products/mzb0dwyeu1-6cc19c3a493fba243e16896258452938-640-0.jpg"
+      }
+    ],
+
+    "componentes": [
+      {
+        "nombre": "RTX 4080 Super",
+        "descripcion": "Ofrece un rendimiento gráfico excepcional con arquitectura Ada Lovelace, soporte para ray tracing y DLSS, ideal para gamers y creadores de contenido",
+        "precio": 599.99,
+        "imagen_url": "https://s3-sa-east-1.amazonaws.com/saasargentina/WFid8ScKitR6gwMJg7Xh/imagen"
+      },
+      {
+        "nombre": "Procesador AMD ryzen 7",
+        "descripcion": "Ofrece un excelente rendimiento multihilo, ideal para gaming y tareas creativas, con arquitectura Zen y eficientes capacidades de overclocking",
+        "precio": 299.99,
+        "imagen_url": "https://mexx-img-2019.s3.amazonaws.com/procesador-cpu-ryzen_40369_1.jpeg?v252?v348?v928"
+      },
+      {
+        "nombre": "Memoria RAM XLR8 16gb",
+        "descripcion": "Proporciona un alto rendimiento y velocidad, perfecta para gamers y creadores de contenido que buscan mejorar la capacidad de su sistema",
+        "precio": 99.99,
+        "imagen_url": "https://spacegamer.com.ar/img/Public/1058-producto-memoria-pny-xlr8-gaming-8gb-ddr4-11-fff46b60f4f0a86fb41601042661781.jpg"
+      },
+      {
+        "nombre": "Refrigeracion liquida",
+        "descripcion": "Ofrece una gestión térmica eficiente y silenciosa, ideal para mantener temperaturas óptimas en PCs de alto rendimiento y entusiastas del overclocking",
+        "precio": 149.99,
+        "imagen_url": "https://acf.geeknetic.es/imgw/imagenes/Tutoriales/2019/1618-cooler-master-ml240p-mirage/1618-cooler-master-ml240p-mirage-1.jpg?f=webp"
+      }
+    ]
+  }

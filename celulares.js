@@ -1,57 +1,89 @@
-const productos = [
-    {nombre: "Iphone 15", descripcion: "Combina un diseño elegante, cámaras mejoradas y conectividad USB-C", precio: 899.99, imagen: "https://i.blogs.es/ef28bf/iphone-15-iphone-15-plus-7/650_1200.jpeg"},
-    {nombre: "Samsung Galaxy s24 ultra", descripcion: "Presenta un diseño premium, pantalla AMOLED de alta resolución, potente procesador, cámaras avanzadas y soporte para S Pen", precio: 699.99, imagen: "https://www.cordobadigital.net/wp-content/uploads/2024/01/S24-Ultra-Grey.jpg"},
-    {nombre: "Motorola g84", descripcion: "Ofrece un diseño atractivo, pantalla AMOLED, buena duración de batería y cámaras versátiles, todo a un precio accesible", precio: 349.99, imagen: "https://saturnohogar.vtexassets.com/arquivos/ids/156943/5064.jpg?v=638296552226300000"},
-    {nombre: "Redmi Note 13", descripcion: "Destaca por su gran pantalla, potente batería, rendimiento sólido y cámaras versátiles, todo a un precio competitivo", precio: 249.99, imagen: "https://acdn.mitiendanube.com/stores/001/160/892/products/mzb0dwyeu1-6cc19c3a493fba243e16896258452938-640-0.jpg"}
-]
+const contenedorProductos = document.getElementById('contenedor-productos');
 
-const tarjetaProducto = (producto) => `
-    <div class="col-md-6 col-lg-6 mb-4">
-        <div class="card h-100 shadow-sm">
-            <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">${producto.nombre}</h5>
-                <p class="card-text flex-grow-1">${producto.descripcion}</p>
-                <p class="card-text text-primary"><strong>Precio: $${producto.precio.toFixed(2)}</strong></p>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div class="btn-group">
-                        <button class="btn btn-sm btn-outline-secondary restar">-</button>
-                        <span class="px-2 cantidad">0</span>
-                        <button class="btn btn-sm btn-outline-secondary sumar">+</button>
-                    </div>
-                    <button class="btn btn-primary">Agregar al carrito</button>
-                </div>
-            </div>
-        </div>
-    </div>
-`
+function createProductElement(product) {
+  const productElement = document.createElement('div');
+  productElement.classList.add('col-md-6', 'col-lg-6', 'mb-4');
 
-const tarjetasProductos = `
-    <div class="container mt-4">
-        <div class="row">
-            ${productos.map(producto => tarjetaProducto(producto)).join('')}
-        </div>
-    </div>
-`
+  const cardElement = document.createElement('div');
+  cardElement.classList.add('card', 'h-100', 'shadow-sm');
 
-let contenedorProductos = document.getElementById('contenedor-productos')
+  const imgElement = document.createElement('img');
+  imgElement.src = product.imagen_url;
+  imgElement.alt = product.nombre;
+  imgElement.classList.add('card-img-top');
 
-window.addEventListener('load', () => {
-    contenedorProductos.innerHTML = tarjetasProductos
+  const cardBodyElement = document.createElement('div');
+  cardBodyElement.classList.add('card-body', 'd-flex', 'flex-column');
 
-    document.querySelectorAll('.card').forEach(card => {
-        const sumar = card.querySelector('.sumar')
-        const restar = card.querySelector('.restar')
-        const cantidad = card.querySelector('.cantidad')
+  const titleElement = document.createElement('h5');
+  titleElement.classList.add('card-title');
+  titleElement.textContent = product.nombre;
 
-        sumar.addEventListener('click', () => {
-            cantidad.textContent = parseInt(cantidad.textContent) + 1
-        })
+  const descriptionElement = document.createElement('p');
+  descriptionElement.classList.add('card-text', 'flex-grow-1');
+  descriptionElement.textContent = product.descripcion;
 
-        restar.addEventListener('click', () => {
-            if (parseInt(cantidad.textContent) > 0) {
-                cantidad.textContent = parseInt(cantidad.textContent) - 1
-            }
-        })
-    })
-})
+  const priceElement = document.createElement('p');
+  priceElement.classList.add('card-text', 'text-primary');
+  priceElement.innerHTML = `<strong>Precio: $${product.precio.toFixed(2)}</strong>`;
+
+  const buttonGroupElement = document.createElement('div');
+  buttonGroupElement.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mt-3');
+
+  const counterElement = document.createElement('div');
+  counterElement.classList.add('btn-group');
+
+  const subtractButton = document.createElement('button');
+  subtractButton.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'restar');
+  subtractButton.textContent = '-';
+
+  const countElement = document.createElement('span');
+  countElement.classList.add('px-2', 'cantidad');
+  countElement.textContent = '0';
+
+  const addButton = document.createElement('button');
+  addButton.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'sumar');
+  addButton.textContent = '+';
+
+  const addToCartButton = document.createElement('button');
+  addToCartButton.classList.add('btn', 'btn-primary');
+  addToCartButton.textContent = 'Agregar al carrito';
+
+  counterElement.append(subtractButton, countElement, addButton);
+  buttonGroupElement.append(counterElement, addToCartButton);
+
+  cardBodyElement.append(titleElement, descriptionElement, priceElement, buttonGroupElement);
+  cardElement.append(imgElement, cardBodyElement);
+  productElement.append(cardElement);
+
+  subtractButton.addEventListener('click', () => {
+    if (parseInt(countElement.textContent) > 0) {
+      countElement.textContent = parseInt(countElement.textContent) - 1;
+    }
+  });
+
+  addButton.addEventListener('click', () => {
+    countElement.textContent = parseInt(countElement.textContent) + 1;
+  });
+
+  return productElement;
+}
+
+fetch('data.json')
+  .then(response => response.json())
+  .then(data => {
+    const productElements = data.celulares.map(product => createProductElement(product));
+    const rowElements = [];
+
+    for (let i = 0; i < productElements.length; i += 2) {
+      const rowElement = document.createElement('div');
+      rowElement.classList.add('row');
+      rowElement.append(productElements[i], productElements[i + 1] || null);
+      rowElements.push(rowElement);
+    }
+
+    rowElements.forEach(row => contenedorProductos.appendChild(row));
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });

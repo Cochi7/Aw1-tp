@@ -1,57 +1,89 @@
-const productos = [
-    {nombre: "RTX 4080 Super", descripcion: "Ofrece un rendimiento gráfico excepcional con arquitectura Ada Lovelace, soporte para ray tracing y DLSS, ideal para gamers y creadores de contenido", precio: 599.99, imagen: "https://s3-sa-east-1.amazonaws.com/saasargentina/WFid8ScKitR6gwMJg7Xh/imagen"},
-    {nombre: "Procesador AMD ryzen 7", descripcion: "Ofrece un excelente rendimiento multihilo, ideal para gaming y tareas creativas, con arquitectura Zen y eficientes capacidades de overclocking", precio: 299.99, imagen: "https://mexx-img-2019.s3.amazonaws.com/procesador-cpu-ryzen_40369_1.jpeg?v252?v348?v928"},
-    {nombre: "Memoria RAM XLR8 16gb", descripcion: "Proporciona un alto rendimiento y velocidad, perfecta para gamers y creadores de contenido que buscan mejorar la capacidad de su sistema", precio: 99.99, imagen: "https://spacegamer.com.ar/img/Public/1058-producto-memoria-pny-xlr8-gaming-8gb-ddr4-11-fff46b60f4f0a86fb41601042661781.jpg"},
-    {nombre: "Refrigeracion liquida", descripcion: "Ofrece una gestión térmica eficiente y silenciosa, ideal para mantener temperaturas óptimas en PCs de alto rendimiento y entusiastas del overclocking", precio: 149.99, imagen: "https://acf.geeknetic.es/imgw/imagenes/Tutoriales/2019/1618-cooler-master-ml240p-mirage/1618-cooler-master-ml240p-mirage-1.jpg?f=webp"}
-]
+const contenedorProductos = document.getElementById('contenedor-productos');
 
-const tarjetaProducto = (producto) => `
-    <div class="col-md-6 col-lg-6 mb-4">
-        <div class="card h-100 shadow-sm">
-            <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">${producto.nombre}</h5>
-                <p class="card-text flex-grow-1">${producto.descripcion}</p>
-                <p class="card-text text-primary"><strong>Precio: $${producto.precio.toFixed(2)}</strong></p>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div class="btn-group">
-                        <button class="btn btn-sm btn-outline-secondary restar">-</button>
-                        <span class="px-2 cantidad">0</span>
-                        <button class="btn btn-sm btn-outline-secondary sumar">+</button>
-                    </div>
-                    <button class="btn btn-primary">Agregar al carrito</button>
-                </div>
-            </div>
-        </div>
-    </div>
-`
+function createProductElement(product) {
+  const productElement = document.createElement('div');
+  productElement.classList.add('col-md-6', 'col-lg-6', 'mb-4');
 
-const tarjetasProductos = `
-    <div class="container mt-4">
-        <div class="row">
-            ${productos.map(producto => tarjetaProducto(producto)).join('')}
-        </div>
-    </div>
-`
+  const cardElement = document.createElement('div');
+  cardElement.classList.add('card', 'h-100', 'shadow-sm');
 
-let contenedorProductos = document.getElementById('contenedor-productos')
+  const imgElement = document.createElement('img');
+  imgElement.src = product.imagen_url;
+  imgElement.alt = product.nombre;
+  imgElement.classList.add('card-img-top');
 
-window.addEventListener('load', () => {
-    contenedorProductos.innerHTML = tarjetasProductos
+  const cardBodyElement = document.createElement('div');
+  cardBodyElement.classList.add('card-body', 'd-flex', 'flex-column');
 
-    document.querySelectorAll('.card').forEach(card => {
-        const sumar = card.querySelector('.sumar')
-        const restar = card.querySelector('.restar')
-        const cantidad = card.querySelector('.cantidad')
+  const titleElement = document.createElement('h5');
+  titleElement.classList.add('card-title');
+  titleElement.textContent = product.nombre;
 
-        sumar.addEventListener('click', () => {
-            cantidad.textContent = parseInt(cantidad.textContent) + 1
-        })
+  const descriptionElement = document.createElement('p');
+  descriptionElement.classList.add('card-text', 'flex-grow-1');
+  descriptionElement.textContent = product.descripcion;
 
-        restar.addEventListener('click', () => {
-            if (parseInt(cantidad.textContent) > 0) {
-                cantidad.textContent = parseInt(cantidad.textContent) - 1
-            }
-        })
-    })
-})
+  const priceElement = document.createElement('p');
+  priceElement.classList.add('card-text', 'text-primary');
+  priceElement.innerHTML = `<strong>Precio: $${product.precio.toFixed(2)}</strong>`;
+
+  const buttonGroupElement = document.createElement('div');
+  buttonGroupElement.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mt-3');
+
+  const counterElement = document.createElement('div');
+  counterElement.classList.add('btn-group');
+
+  const subtractButton = document.createElement('button');
+  subtractButton.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'restar');
+  subtractButton.textContent = '-';
+
+  const countElement = document.createElement('span');
+  countElement.classList.add('px-2', 'cantidad');
+  countElement.textContent = '0';
+
+  const addButton = document.createElement('button');
+  addButton.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'sumar');
+  addButton.textContent = '+';
+
+  const addToCartButton = document.createElement('button');
+  addToCartButton.classList.add('btn', 'btn-primary');
+  addToCartButton.textContent = 'Agregar al carrito';
+
+  counterElement.append(subtractButton, countElement, addButton);
+  buttonGroupElement.append(counterElement, addToCartButton);
+
+  cardBodyElement.append(titleElement, descriptionElement, priceElement, buttonGroupElement);
+  cardElement.append(imgElement, cardBodyElement);
+  productElement.append(cardElement);
+
+  subtractButton.addEventListener('click', () => {
+    if (parseInt(countElement.textContent) > 0) {
+      countElement.textContent = parseInt(countElement.textContent) - 1;
+    }
+  });
+
+  addButton.addEventListener('click', () => {
+    countElement.textContent = parseInt(countElement.textContent) + 1;
+  });
+
+  return productElement;
+}
+
+fetch('data.json')
+  .then(response => response.json())
+  .then(data => {
+    const productElements = data.componentes.map(product => createProductElement(product));
+    const rowElements = [];
+
+    for (let i = 0; i < productElements.length; i += 2) {
+      const rowElement = document.createElement('div');
+      rowElement.classList.add('row');
+      rowElement.append(productElements[i], productElements[i + 1] || null);
+      rowElements.push(rowElement);
+    }
+
+    rowElements.forEach(row => contenedorProductos.appendChild(row));
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
