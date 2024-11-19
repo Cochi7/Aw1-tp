@@ -1,5 +1,29 @@
 const contenedorProductos = document.getElementById('contenedor-productos');
 
+function agregarAlCarrito(producto, cantidad) {
+
+  const carrito = JSON.parse(localStorage.getItem('itemsCarrito') || '[]');
+  
+  const productoExistente = carrito.find(item => item.nombre === producto.nombre);
+  
+  if (productoExistente) {
+
+    productoExistente.cantidad += cantidad;
+  } else {
+
+    carrito.push({
+      nombre: producto.nombre,
+      precio: producto.precio,
+      imagen_url: producto.imagen_url,
+      cantidad: cantidad
+    });
+  }
+  
+  localStorage.setItem('itemsCarrito', JSON.stringify(carrito));
+  
+  alert(`Se agregaron ${cantidad} ${producto.nombre}(s) al carrito`);
+}
+
 function createProductElement(product) {
   const productElement = document.createElement('div');
   productElement.classList.add('col-md-6', 'col-lg-6', 'mb-4');
@@ -49,13 +73,6 @@ function createProductElement(product) {
   addToCartButton.classList.add('btn', 'btn-primary');
   addToCartButton.textContent = 'Agregar al carrito';
 
-  counterElement.append(subtractButton, countElement, addButton);
-  buttonGroupElement.append(counterElement, addToCartButton);
-
-  cardBodyElement.append(titleElement, descriptionElement, priceElement, buttonGroupElement);
-  cardElement.append(imgElement, cardBodyElement);
-  productElement.append(cardElement);
-
   subtractButton.addEventListener('click', () => {
     if (parseInt(countElement.textContent) > 0) {
       countElement.textContent = parseInt(countElement.textContent) - 1;
@@ -65,6 +82,21 @@ function createProductElement(product) {
   addButton.addEventListener('click', () => {
     countElement.textContent = parseInt(countElement.textContent) + 1;
   });
+
+  addToCartButton.addEventListener('click', () => {
+    const cantidad = parseInt(countElement.textContent);
+    if (cantidad > 0) {
+      agregarAlCarrito(product, cantidad);
+      countElement.textContent = '0';
+    }
+  });
+
+  counterElement.append(subtractButton, countElement, addButton);
+  buttonGroupElement.append(counterElement, addToCartButton);
+
+  cardBodyElement.append(titleElement, descriptionElement, priceElement, buttonGroupElement);
+  cardElement.append(imgElement, cardBodyElement);
+  productElement.append(cardElement);
 
   return productElement;
 }

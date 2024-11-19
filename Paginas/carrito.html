@@ -1,26 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
     <link rel="stylesheet" href="../Estilos/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Tienda Pichichus</title>
 </head>
-<body data-bs-theme="dark">
+<body>
+    <body data-bs-theme="dark">
     <header>
         
     </header>
 
-    <input type="hidden" id="pageName" value="Componentes para PC">
+    <input type="hidden" id="pageName" value="Carrito">
 
-    <h1 class="title" id="title"></h1>
-
-    <div id="contenedor-productos"></div>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Carrito de Compras</h1>
+        <div id="carrito-contenedor" class="row"></div>
+        <div class="text-center mt-4">
+            <h3 id="total-compra">Total: $0.00</h3>
+            <button id="btn-comprar" class="btn btn-primary">Finalizar Compra</button>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="../Javascript/index.js"></script>
-    <script src="../Javascript/componentes.js"></script>
+    <script src="../Javascript/carrito.js"></script>
 </body>
 </html>

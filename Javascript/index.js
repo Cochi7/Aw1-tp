@@ -25,7 +25,10 @@ const navBar = `
                         }).join('')
                     }
                 </ul>
-                <button class="logoutBtn btn btn-danger ms-auto"><i class="bi bi-box-arrow-in-left"></i></button>
+                <div class="ms-auto">
+                    <button class="carritoBtn btn btn-success"><i class="bi bi-cart"></i></button>
+                    <button class="logoutBtn btn btn-danger"><i class="bi bi-box-arrow-in-left"></i></button>
+                </div>
             </div>
         </div>
     </nav>
@@ -45,6 +48,20 @@ window.addEventListener('load', () => {
         logoutBtn.addEventListener('click', () => {
 
             window.location.href = '../Paginas/login.html';
+        });
+    }
+})
+
+window.addEventListener('load', () => {
+    navContainer.innerHTML = navBar
+    title.textContent = `${pageName}`
+    document.title = pageName
+
+    const logoutBtn = document.querySelector('.carritoBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+
+            window.location.href = '../Paginas/carrito.html';
         });
     }
 })
