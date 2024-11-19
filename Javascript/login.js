@@ -5,6 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     formularioLogin.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        window.location.href = 'electrodomesticos.html';
+        window.location.href = '../Paginas/electrodomesticos.html';
     });
 });

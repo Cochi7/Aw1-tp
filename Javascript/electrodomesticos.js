@@ -69,10 +69,10 @@ function createProductElement(product) {
   return productElement;
 }
 
-fetch('data.json')
+fetch('../data.json')
   .then(response => response.json())
   .then(data => {
-    const productElements = data.componentes.map(product => createProductElement(product));
+    const productElements = data.electrodomesticos.map(product => createProductElement(product));
     const rowElements = [];
 
     for (let i = 0; i < productElements.length; i += 2) {
